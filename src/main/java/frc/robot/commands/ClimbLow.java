@@ -12,40 +12,40 @@ import edu.wpi.first.wpilibj.command.*;
 //import frc.robot.subsystems.ShootSubsystem;
 
 //import frc.robot.Robot;
-import static frc.robot.Robot.shootSub;
+import static frc.robot.Robot.climbSub;
 
 /**
  * An example command. You can replace me with your own command.
  */
-public class Shoot extends Command {
-  public Shoot() {
+public class ClimbLow extends Command {
+  public ClimbLow() {
     // Use requires() here to declare subsystem dependencies
-    requires(shootSub);
+    requires(climbSub);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    //timeout is placeholder  
 }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    setTimeout(0.5);
-    shootSub.Up();
+    climbSub.MoveLow();
   }
   
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     //return false;
-    return isTimedOut();
+    return !climbSub.low;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    shootSub.Stop();
+    climbSub.Stop();
   }
 
   // Called when another command which requires one or more of the same

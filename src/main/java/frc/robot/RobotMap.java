@@ -24,10 +24,11 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
-  public static int FRONT_LEFT_MOTOR_ID = 1;
-  public static int FRONT_RIGHT_MOTOR_ID = 2;
-  public static int REAR_LEFT_MOTOR_ID = 3;
-  public static int REAR_RIGHT_MOTOR_ID = 4;
+  public static int LEFT_MOTOR_ID1 = 1;
+  public static int LEFT_MOTOR_ID2 = 2;
+  public static int RIGHT_MOTOR_ID1 = 3;
+  public static int RIGHT_MOTOR_ID2 = 4;
+
 
   public static int FIRST_PCM_ID = 0;
   public static int SECOND_PCM_ID = 9;
@@ -36,8 +37,16 @@ public class RobotMap {
 
   // PWM port for servo and new single solenoid
   public static int AIM_STUFF = 2;
+  public static int CLIMB_STUFF = 1;
   public static int SHOOT_FORWARD = 0;
 
+
+  //button 
+  public static int AIM_UP_BUTTON = 4;
+  public static int AIM_DOWN_BUTTON = 1;
+  public static int CLIMB_HIGH_BUTTON = 2;
+  public static int CLIMB_LOW_BUTTON = 3;
+  public static int SHOOT_BUTTON = 6;
   // first PCM
   /*public static int ARM_FORWARD = 6;
   public static int ARM_BACKWARD = 7;
@@ -54,4 +63,7 @@ public class RobotMap {
   // second PCM
   public static int GRABBER_FORWARD = 5;
   public static int GRABBER_BACKWARD = 4;*/
+
+
+
 }

@@ -7,7 +7,11 @@
 
 package frc.robot.subsystems;
 
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX; 
+//import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+//import edu.wpi.first.wpilibj.PWMTalonSRX;
+
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -28,14 +32,16 @@ public class DriveSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  SpeedController frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_MOTOR_ID);
-  SpeedController frontRight = new WPI_TalonSRX(RobotMap.FRONT_RIGHT_MOTOR_ID);
-  SpeedController rearLeft = new WPI_TalonSRX(RobotMap.REAR_LEFT_MOTOR_ID);
-  SpeedController rearRight = new WPI_TalonSRX(RobotMap.REAR_RIGHT_MOTOR_ID);
+  SpeedController left1 = new WPI_TalonSRX(RobotMap.LEFT_MOTOR_ID1);
+  SpeedController left2 = new WPI_TalonSRX(RobotMap.LEFT_MOTOR_ID2);
+
+  SpeedController right1 = new WPI_TalonSRX(RobotMap.RIGHT_MOTOR_ID1);
+  SpeedController right2 = new WPI_TalonSRX(RobotMap.RIGHT_MOTOR_ID2);
 
 
-  SpeedControllerGroup left = new SpeedControllerGroup(frontLeft, rearLeft);
-  SpeedControllerGroup right = new SpeedControllerGroup(frontRight, rearRight);
+
+  SpeedControllerGroup left = new SpeedControllerGroup(left2, left1);
+  SpeedControllerGroup right = new SpeedControllerGroup(right1, right2);
   private final DifferentialDrive BoiDrive = new DifferentialDrive(left, right);
 
 
@@ -49,9 +55,9 @@ public class DriveSubsystem extends Subsystem {
   public void DifferentialDrive() {
     //robotDrive.arcadeDrive(OI.controller.getX(Hand.kLeft), -OI.controller.getY(Hand.kRight),
         //OI.controller.getX(Hand.kRight));
-    double boileft = OI.controller.getY(Hand.kLeft);
-    double boiright = OI.controller.getY(Hand.kRight);
-    BoiDrive.tankDrive(boileft*-1, boiright*-1);
+    double leftValue = OI.controller.getY(Hand.kLeft);
+    double rightValue = OI.controller.getY(Hand.kRight);
+    BoiDrive.tankDrive(leftValue*-1, rightValue*-1);
     //*-1 is because, welp, the controller is stupid
   }
   

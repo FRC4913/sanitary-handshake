@@ -17,8 +17,8 @@ import static frc.robot.Robot.aimSub;
 /**
  * An example command. You can replace me with your own command.
  */
-public class Aim extends Command {
-  public Aim() {
+public class AimUp extends Command {
+  public AimUp() {
     // Use requires() here to declare subsystem dependencies
     requires(aimSub);
   }
@@ -26,26 +26,26 @@ public class Aim extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    setTimeout(2.5);//timeout is placeholder  
+    //timeout is placeholder  
 }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    aimSub.Up();
+    aimSub.MoveUp();
   }
   
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     //return false;
-    return isTimedOut();
+    return !aimSub.up;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    shootSub.Stop();
+    aimSub.Stop();
   }
 
   // Called when another command which requires one or more of the same

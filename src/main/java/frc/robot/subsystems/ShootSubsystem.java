@@ -29,6 +29,7 @@ public class ShootSubsystem extends Subsystem {
 
   public void Up(){
     shoot.set(true);
+
   }
 
   public void Stop(){

@@ -39,8 +39,9 @@ public class Robot extends TimedRobot {
   public static final PusherSubsystem pusherSub = new PusherSubsystem();*/
   public static final ShootSubsystem shootSub = new ShootSubsystem();
   public static final AimSubsystem aimSub = new AimSubsystem();
+  public static final ClimbSubsystem climbSub = new ClimbSubsystem();
     
-  }
+  
 
   /**
    * This function is run when the robot is first started up and should be used

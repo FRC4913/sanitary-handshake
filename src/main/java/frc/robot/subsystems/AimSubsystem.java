@@ -8,6 +8,9 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+
+//import com.sun.tools.javac.comp.Check;
+
 import edu.wpi.first.wpilibj.Servo;
 //import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.OI;
@@ -24,9 +27,11 @@ public class AimSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public double vertical = 0;
+  // vertical is the value of the height of the aimer
 
   Servo aim = new Servo(RobotMap.AIM_STUFF);//placeholders
-
+  public boolean up;
+  public boolean down;
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
@@ -42,14 +47,47 @@ public class AimSubsystem extends Subsystem {
       aim.set(OI.controller.getTriggerAxis(Hand.kLeft));
   }
   */ 
+
+  //check if vertical reaches min(0) or max(1)
   public void Check(){
      if (vertical<0){
        vertical=0;
      }else if (vertical>1){
        vertical=1;
+     }else{
      }
    }
-  public double Move(){
+
+  //While the button 1 is pressed, it adds 0.1 to vertical. After the while loop, it sets the value of aim
+  //since this is an if statement, it should be called every millisecond in OI.java
+  public double MoveDown(){
+
+    down = OI.controller.getRawButton(1);
+    if (down == true){
+      vertical=vertical-0.1;
+      Check();
+    }
+    aim.set(vertical);
+    return vertical;
+   }
+
+  //While the button 4 is pressed, it subtracts 0.1 from vertical. After the while loop, it sets the value of aim
+  //since this is an if statement, it should be called every millisecond in OI.java
+  public double MoveUp(){
+
+    up = OI.controller.getRawButton(4);
+    if (up == true){
+      vertical = vertical + 0.1;
+      Check();
+    }
+    aim.set(vertical);
+    return vertical;
+  }
+
+  public void Stop(){
+    aim.set(vertical);
+  }
+  /*public double MoveUp(){
 
     boolean up = OI.controller.getRawButton(4);
     boolean down = OI.controller.getRawButton(1);
@@ -65,7 +103,7 @@ public class AimSubsystem extends Subsystem {
     }
     aim.set(vertical);
     return vertical;
-  }
+  }*/
 
 
 }

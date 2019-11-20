@@ -10,7 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-//import frc.robot.commands.*;
+import frc.robot.commands.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -20,10 +20,7 @@ public class OI {
 
   public static XboxController controller = new XboxController(RobotMap.XBOX_CONTROLLER);
 
-  // method 3
-  // public Button GrabberButton = new JoystickButton(controller, 4); // Y
-  // public Button ArmButton = new JoystickButton(controller, 1); // A
-  // public Button PusherButton = new JoystickButton(controller, 2); // B
+
   /**Control Gary
    * FrontLifter back
    * RearLefter start
@@ -34,82 +31,22 @@ public class OI {
    * PusherPull Y
    * PusherPush A
    */
-  public Button FrontLifterButton = new JoystickButton(controller, 8);
-  public Button RearLifterButton = new JoystickButton(controller, 7);
 
-  // method 5
+  //4 is A in green. 1 is Y in yellow. 3 is X in blue. 2 is B in red. 6 is rb
 
-  public Button AimerUpButton = new JoystickButton(controller, 4);
-  public Button AimerDownButton = new JoystickButton(controller, 1);
+  public Button AimerUpButton = new JoystickButton(controller, RobotMap.AIM_UP_BUTTON);
+  public Button AimerDownButton = new JoystickButton(controller, RobotMap.AIM_DOWN_BUTTON);
+  public Button ClimbHighButton = new JoystickButton(controller, RobotMap.CLIMB_HIGH_BUTTON);
+  public Button ClimbLowButton = new JoystickButton(controller, RobotMap.CLIMB_LOW_BUTTON);
+  public Button ShootButton = new JoystickButton(controller, RobotMap.SHOOT_BUTTON);
 
-
-  // method 1
-  // public boolean grabberToggle = false;
-  // public boolean armToggle = false;
-  // public boolean pusherToggle = false;
-  // public boolean frontLifterToggle = false;
-  // public boolean rearLifterToggle = false;
 
   public OI() {
-
-    // method 1
-    // grabberToggle = runSubsystem(4, grabberToggle, GrabberButton, new
-    // GrabberClose(), new GrabberOpen());
-    // armToggle = runSubsystem(1, armToggle, ArmButton, new ArmDown(), new
-    // ArmUp());
-    // pusherToggle = runSubsystem(2, pusherToggle, PusherButton, new PusherPull(),
-    // new PusherPush());
-    // frontLifterToggle = runSubsystem(8, frontLifterToggle, FrontLifterButton, new
-    // FrontLifterUp(), new FrontLifterDown());
-    // rearLifterToggle = runSubsystem(7, rearLifterToggle, RearLifterButton, new
-    // RearLifterUp(), new RearLifterDown());
-
-    // method 2
-    // GrabberButton.whenPressed(new GrabberOpen());
-    // GrabberButton.toggleWhenPressed(new GrabberClose());
-
-    // method 4
-    // GrabberButton.whenPressed(new GrabberToggle(new GrabberOpen(), new GrabberClose()));
-    // ArmButton.whenPressed(new ArmToggle(new ArmUp(), new ArmDown()));
-    // PusherButton.whenPressed(new PusherToggle(new PusherPull(), new PusherPush()));
-
-    //keep this
-    //FrontLifterButton.whenPressed(new FrontLifterToggle(new FrontLifterUp(), new FrontLifterDown()));
-    //RearLifterButton.whenPressed(new RearLifterToggle(new RearLifterUp(), new RearLifterDown()));
-//keep this
     
-    // method 3
-    // GrabberButton.whenPressed(new GrabberOpen());
-
-    // method 5
-    //KEEP THIS METHOD
-    /*GrabberOpenButton.whenPressed(new GrabberOpen());
-    GrabberCloseButton.whenPressed(new GrabberClose());
-    ArmUpButton.whenPressed(new ArmUp());
-    ArmDownButton.whenPressed(new ArmDown());
-    PusherPullButton.whenPressed(new PusherPull());
-    PusherPushButton.whenPressed(new PusherPush());*/
-  }
-
-  /*
-   * Method is for running a subsystem by using a button to toggle between
-   * commands. Each time method runs, it returns a new value for the toggle
-   */
-
-  // method 1
-  // public boolean runSubsystem(int buttonNumber, boolean oldToggle, Button
-  // buttonName, Command firstCommand,
-  // Command alternateCommand) {
-  // boolean newToggle = false;// initialized value of newToggle doesn't matter
-  // if (controller.getRawButtonPressed(buttonNumber)) {
-  // newToggle = !oldToggle;
-  // if (newToggle)
-  // buttonName.whileHeld(firstCommand);
-  // else if (!newToggle)
-  // buttonName.whileHeld(alternateCommand);
-  // } else {
-  // newToggle = oldToggle;
-  // }
-  // return newToggle;
-  // }
+    AimerUpButton.whileHeld(new AimUp());
+    AimerDownButton.whileHeld(new AimDown());
+    ClimbHighButton.whileHeld(new ClimbHigh());
+    ClimbLowButton.whileHeld(new ClimbLow());
+    ShootButton.whenPressed(new Shoot());
+}
 }
