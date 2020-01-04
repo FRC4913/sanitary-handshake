@@ -32,11 +32,6 @@ public class Robot extends TimedRobot {
   UsbCamera camera;
 
   public static final DriveSubsystem driveSub = new DriveSubsystem();
-  /*public static final ArmSubsystem armSub = new ArmSubsystem();
-  public static final GrabberSubsystem grabberSub = new GrabberSubsystem();
-  public static final FrontLifterSubsystem frontLifterSub = new FrontLifterSubsystem();
-  public static final RearLifterSubsystem rearLifterSub = new RearLifterSubsystem();
-  public static final PusherSubsystem pusherSub = new PusherSubsystem();*/
   public static final ShootSubsystem shootSub = new ShootSubsystem();
   public static final AimSubsystem aimSub = new AimSubsystem();
   public static final ClimbSubsystem climbSub = new ClimbSubsystem();
@@ -53,8 +48,8 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", new Drive());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-    CameraServer.getInstance().startAutomaticCapture(0);
-    CameraServer.getInstance().startAutomaticCapture(1);
+    CameraServer.getInstance().startAutomaticCapture();
+    // CameraServer.getInstance().startAutomaticCapture(1);
 
     // camera = CameraServer.getInstance().startAutomaticCapture(0);
     // camera.setResolution(360, 270);
@@ -71,7 +66,10 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("RearLifterUp", new RearLifterUp());
     SmartDashboard.putData("RearLifterDown", new RearLifterDown());*/
     SmartDashboard.putData("Shoot", new Shoot());
-    //SmartDashboard.putData("Aim", new Aim());
+    SmartDashboard.putData("AimDown", new AimDown());
+    SmartDashboard.putData("AimUp", new AimUp());
+    SmartDashboard.putData("ClimbHigh", new ClimbHigh());
+    SmartDashboard.putData("ClimbLow", new ClimbLow());
   }
 
   /**

@@ -26,12 +26,21 @@ import frc.robot.RobotMap;
 public class AimSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public double vertical = 0;
+  public double vertical;
+  public double change =0.01;
   // vertical is the value of the height of the aimer
 
   Servo aim = new Servo(RobotMap.AIM_STUFF);//placeholders
-  public boolean up;
-  public boolean down;
+  public boolean up = true;
+  public boolean down = true;
+  public void Check(){
+    if (vertical<0){
+      vertical=0;
+    }else if (vertical>1){
+      vertical=1;
+    }else{
+    }
+  }
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
@@ -49,14 +58,7 @@ public class AimSubsystem extends Subsystem {
   */ 
 
   //check if vertical reaches min(0) or max(1)
-  public void Check(){
-     if (vertical<0){
-       vertical=0;
-     }else if (vertical>1){
-       vertical=1;
-     }else{
-     }
-   }
+
 
   //While the button 1 is pressed, it adds 0.1 to vertical. After the while loop, it sets the value of aim
   //since this is an if statement, it should be called every millisecond in OI.java
@@ -64,10 +66,11 @@ public class AimSubsystem extends Subsystem {
 
     down = OI.controller.getRawButton(1);
     if (down == true){
-      vertical=vertical-0.1;
+      vertical=vertical-change;
       Check();
+      aim.set(vertical);
     }
-    aim.set(vertical);
+    System.out.print(vertical);
     return vertical;
    }
 
@@ -77,33 +80,17 @@ public class AimSubsystem extends Subsystem {
 
     up = OI.controller.getRawButton(4);
     if (up == true){
-      vertical = vertical + 0.1;
+      vertical = vertical + change;
       Check();
+      aim.set(vertical);
     }
-    aim.set(vertical);
+    System.out.print(vertical);
     return vertical;
   }
 
   public void Stop(){
     aim.set(vertical);
+    System.out.print(vertical);
   }
-  /*public double MoveUp(){
-
-    boolean up = OI.controller.getRawButton(4);
-    boolean down = OI.controller.getRawButton(1);
-    while (up == true || down == true || vertical < 0 || vertical > 1){
-      if (up == true){
-        vertical=vertical+0.1;
-        Check();
-      }
-      else{
-        vertical=vertical-0.1;
-        Check();
-      }
-    }
-    aim.set(vertical);
-    return vertical;
-  }*/
-
-
+  
 }

@@ -45,8 +45,8 @@ public class OI {
     
     AimerUpButton.whileHeld(new AimUp());
     AimerDownButton.whileHeld(new AimDown());
-    ClimbHighButton.whileHeld(new ClimbHigh());
-    ClimbLowButton.whileHeld(new ClimbLow());
+    ClimbHighButton.whenPressed(new ClimbHigh());
+    ClimbLowButton.whenPressed(new ClimbLow());
     ShootButton.whenPressed(new Shoot());
 }
 }

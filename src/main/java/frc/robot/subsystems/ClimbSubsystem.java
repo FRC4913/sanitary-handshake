@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+// import static org.junit.Assume.assumeTrue;
 
 import edu.wpi.first.wpilibj.Spark;
 import frc.robot.OI;
@@ -8,12 +9,16 @@ import frc.robot.RobotMap;
 
 
 public class ClimbSubsystem extends Subsystem {
-    public boolean high;
-    public boolean low;
-    public double height = -1;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     Spark climb = new Spark(RobotMap.CLIMB_STUFF);
+    private double climbSpeedUp=0.8;
+    private double climbSpeedDown=-0.8;
+    private double climbSpeedStop=0;
+
+    public boolean high;
+    public boolean low;
+    public boolean stop;
 
     @Override
     public void initDefaultCommand() {
@@ -21,52 +26,21 @@ public class ClimbSubsystem extends Subsystem {
       // setDefaultCommand(new MySpecialCommand());
       //setDefaultCommand(new Drive());
     }
-
-
-    public void Check2(){
-        if (height<-1){
-          height=-1;
-        }else if (height>1){
-          height=1;
-        }
-      }
-
-
-    /*public double ClimbDown(){
-
-        low = OI.controller.getRawButton(3);
-        if (low == true){
-        height=height-0.1;
-        Check2();
-        }
-        climb.set(height);
-        return height;
-    }*/
-
-
-    public double MoveHigh(){
-
+    public void moveHigh(){
         high = OI.controller.getRawButton(2);
         if (high == true){
-          height = height + 0.1;
-          Check2();
+            climb.set(climbSpeedUp);
         }
-        climb.set(height);
-        return height;
-      }
-    
-    public void Stop(){
-        climb.set(height);
+           
     }
-    public double MoveLow(){
+    public void moveLow(){
+        low = OI.controller.getRawButton(3);
+        if(low == true){
+            climb.set(climbSpeedDown);
+        }
+    }
+    public void moveStop(){
+        climb.set(climbSpeedStop);
+    }
 
-      low = OI.controller.getRawButton(1);
-      if (low == true){
-        height=height-0.1;
-        Check2();
-      }
-      climb.set(height);
-      return height;
-     }
 }
-
